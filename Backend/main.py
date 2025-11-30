@@ -84,8 +84,7 @@ def shorten_url(item: URLCreate, db: Session = Depends(get_db)):
         db_url = URLItem(original_url=item.url, short_code=item.custom_alias)
         db.add(db_url)
         db.commit()
-        return {"short_url": f"http://localhost:8000/{item.custom_alias}", "original": item.url}
-
+        return {"short_url": f"https://nanolink-8rkm.onrender.com/{item.custom_alias}", "original": item.url}
     # 2. If no custom alias, use the Auto-Generator (Base62)
     db_url = URLItem(original_url=item.url)
     db.add(db_url)
@@ -97,7 +96,7 @@ def shorten_url(item: URLCreate, db: Session = Depends(get_db)):
     db_url.short_code = code
     db.commit()
     
-    return {"short_url": f"http://localhost:8000/{code}", "original": item.url}
+    return {"short_url": f"https://nanolink-8rkm.onrender.com/{code}", "original": item.url}
 
 @app.get("/{short_code}")
 def redirect_to_url(short_code: str, db: Session = Depends(get_db)):

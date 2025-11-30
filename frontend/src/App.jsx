@@ -25,7 +25,7 @@ function App() {
     setLoading(true); setError(''); setShortUrl(''); setCopied(false)
 
     try {
-      const response = await fetch('http://localhost:8000/shorten', {
+      const response = await fetch('https://nanolink-8rkm.onrender.com/shorten', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -53,7 +53,7 @@ function App() {
     const code = statsCode.split('/').pop()
 
     try {
-      const response = await fetch(`http://localhost:8000/stats/${code}`)
+      const response = await fetch(`https://nanolink-8rkm.onrender.com/stats/${code}`)
       if (!response.ok) throw new Error('Link not found')
       
       const data = await response.json()
